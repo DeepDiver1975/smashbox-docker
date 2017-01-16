@@ -5,10 +5,17 @@ then
 	OC_SERVER=$OWNCLOUD_PORT_80_TCP_ADDR
 fi
 
-while [ "200" != $(curl --write-out %{http_code} --silent --output /dev/null http://$OC_SERVER/$OC_ROOT/status.php) ]
+OC_URL=$OC_SERVER
+if [[ -n $OC_ROOT ]]
+then
+	OC_URL=$OC_SERVER/$OC_ROOT
+fi
+
+echo "Testing http://$OC_URL/status.php ... "
+while [ "200" != $(curl --write-out %{http_code} --silent --output /dev/null http://$OC_URL/status.php) ]
 do
 	echo -n "."
 	sleep 1
 done
 
-bin/smash $*
+exec bin/smash $*

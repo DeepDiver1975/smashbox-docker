@@ -1,11 +1,10 @@
-FROM ubuntu:14.04
-MAINTAINER hey@morrisjobke.de
+FROM ubuntu:16.04
 
 # add ownCloud client
 ADD Release.key /
 RUN apt-key add - < Release.key
 RUN rm Release.key
-RUN echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/owncloud-client.list
+RUN echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_16.04/ /' > /etc/apt/sources.list.d/owncloud-client.list
 
 RUN apt-get update && apt-get upgrade -y
 
@@ -16,7 +15,7 @@ RUN mkdir /root/smashdir
 
 WORKDIR /smashbox
 
-RUN git clone https://github.com/owncloud/smashbox /smashbox
+RUN git clone --depth 1 https://github.com/owncloud/smashbox /smashbox
 RUN git checkout master
 
 RUN pip install -r requirements.txt
