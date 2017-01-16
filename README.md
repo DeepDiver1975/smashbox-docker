@@ -1,6 +1,6 @@
 # Smashbox test environment
 
-https://registry.hub.docker.com/u/morrisjobke/smashbox/
+https://hub.docker.com/r/deepdiver/smashbox-docker/
 
 To run a test just run the following:
 
@@ -9,7 +9,7 @@ To run a test just run the following:
 		-e OC_ROOT=owncloud \
 		-e OC_ADMIN_USER=admin \
 		-e OC_ADMIN_PASSWORD=password \
-		morrisjobke/smashbox:latest \
+		deepdiver/smashbox-docker:latest \
 		lib/test_basicSync.py
 
 This runs:
